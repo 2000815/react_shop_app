@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import Select from "../molecules/Select";
 import Dialog from "../molecules/Dialog";
 import LoadingDialog from "../molecules/LoadingDialog";
+import { useNavigate } from "react-router-dom";
 
-const Location = () => {
+const Location = (isAuth) => {
   const options = [
     { id: 1, label: "300m以内の検索", value: 1 },
     { id: 2, label: "500m以内の検索", value: 2 },
@@ -26,7 +27,11 @@ const Location = () => {
 
   const isFirstRef = useRef(true);
 
+  const navigate = useNavigate();
   useEffect(() => {
+    if (!isAuth) {
+      navigate("/");
+    }
     isFirstRef.current = false;
     if ("geolocation" in navigator) {
       setAvailable(true);
