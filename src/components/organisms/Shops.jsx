@@ -30,8 +30,6 @@ function Shops() {
     fectchData();
   }, []);
 
-  console.log(isLoading);
-
   const renderContent = () => {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;

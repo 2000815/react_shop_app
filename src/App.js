@@ -16,7 +16,7 @@ function App() {
 
   return (
     <Router>
-      {storedValue && <Navbar isAuth={isAuth} />}
+      {isAuth && <Navbar isAuth={isAuth} />}
       <Routes>
         {isAuth ? (
           <>
