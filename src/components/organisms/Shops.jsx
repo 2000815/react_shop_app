@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import Card from "../molecules/Card";
 import "../styles/Shops.css";
 import Pagination from "../molecules/Pagination";
+import { useNavigate } from "react-router-dom";
 
-function Shops() {
+const Shops = () => {
   const [shopData, setShopData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -15,7 +16,7 @@ function Shops() {
   const [currentPage, setCurrentPage] = useState(1);
 
   // ページを変更するハンドラ
-  const handlePageChange = (pageNumber) => {
+  const handlePageChange = (pageNumber, isAuth) => {
     setCurrentPage(pageNumber);
   };
 
@@ -69,6 +70,6 @@ function Shops() {
       )}
     </div>
   );
-}
+};
 
 export default Shops;
