@@ -62,7 +62,7 @@ function Shops() {
       {isLoading ? (
         <div>
           <p>データを取得中・・・</p>
-          <p>恐れ入りますが、位置情報取得を再度行ってください</p>
+          <p>取得に、終秒かかる可能性があります。</p>
         </div>
       ) : (
         renderContent()
