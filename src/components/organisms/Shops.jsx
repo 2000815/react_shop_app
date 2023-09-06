@@ -6,7 +6,7 @@ import "../styles/Shops.css";
 import Pagination from "../molecules/Pagination";
 import { useNavigate } from "react-router-dom";
 
-const Shops = () => {
+const Shops = (isAuth) => {
   const [shopData, setShopData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -19,8 +19,13 @@ const Shops = () => {
   const handlePageChange = (pageNumber, isAuth) => {
     setCurrentPage(pageNumber);
   };
+  const navigate = useNavigate();
 
-  useEffect(() => {
+  useEffect((isAuth) => {
+    if (!isAuth) {
+      navigate("/");
+    }
+
     const fectchData = async () => {
       let res = await GetShops();
       setShopData(res);

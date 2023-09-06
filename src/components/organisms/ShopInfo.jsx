@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GetShopInfo } from "../../utils/api";
+import { useNavigate } from "react-router-dom";
 
-const ShopInfo = () => {
+const ShopInfo = (isAuth) => {
   const { id } = useParams();
   const [shopData, setShopData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    // ここでidを含める
-    const fectchData = async () => {
-      let res = await GetShopInfo(id);
-      setShopData(res);
-      setIsLoading(false);
-    };
-    fectchData();
-  }, [id]);
+  const navigate = useNavigate();
+  useEffect(
+    (isAuth) => {
+      if (!isAuth) {
+        navigate("/");
+      }
+      // ここでidを含める
+      const fectchData = async () => {
+        let res = await GetShopInfo(id);
+        setShopData(res);
+        setIsLoading(false);
+      };
+      fectchData();
+    },
+    [id]
+  );
 
   return (
     <>

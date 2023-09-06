@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import { GetHistory } from "../../utils/api";
 import { Link } from "react-router-dom";
 import Card from "../molecules/Card";
+import { useNavigate } from "react-router-dom";
 
 const History = () => {
   const [shopData, setShopData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
-  useEffect(() => {
+  useEffect((isAuth) => {
+    if (!isAuth) {
+      navigate("/");
+    }
     const fectchData = async () => {
       let res = await GetHistory();
       console.log(res);
